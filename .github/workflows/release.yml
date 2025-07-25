@@ -1,0 +1,58 @@
+name: Release Package
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+env:
+  DOTNET_INSTALL_DIR: "./.dotnet" # Needed otherwise dotnet setup will fail due to permissions on the k8s runner
+  DOTNET_CLI_HOME: "/tmp"
+  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1 # Suppresses the "Welcome to .NET!" message
+  CI: 1 # Disables Husky and prevents npm install running during the dotnet build
+
+jobs:
+  build:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+
+      - name: Restore test dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build -c release --no-restore
+
+  publish:
+    runs-on: self-hosted
+    needs: build
+
+    steps:
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: |
+            8.0.x
+            9.0.x
+
+      - name: Build NuGet Package
+        run: dotnet pack -c Release -p:PackageVersion=${{  github.ref_name }}
+
+      - name: Upload nuget package artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Nuget package
+          path: "**/*.nupkg"
+
+      - name: Publish NuGet Package
+        run: dotnet nuget push "**/*.nupkg" -k ${{ secrets.NUGET_TOKEN }} -s https://api.nuget.org/v3/index.json

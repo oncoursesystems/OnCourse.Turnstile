@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <PackageId>OnCourse.Turnstile</PackageId>
+    <Version>1.0.1</Version>
+    <Authors>OnCourse Systems For Education</Authors>
+    <Description>Cloudflare Turnstile Library for ASP.NET</Description>
+    <PackageDescription>Cloudflare Turnstile Library for ASP.NET</PackageDescription>
+    <RepositoryUrl>https://github.com/oncoursesystems/OnCourse.Turnstile</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Title>OnCourse.Turnstile</Title>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\" />
+    <None Include="..\preview.gif" Pack="true" PackagePath="\" />
+    <None Include="..\logo.png" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>
