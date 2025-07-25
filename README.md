@@ -1,12 +1,11 @@
-<div align="center">
-    <h1>OnCourse.Turnstile</h1>
-    <img src="preview.gif" width="300" />
-    <p>ASP.NET Core middleware for integrating <a href="https://developers.cloudflare.com/turnstile">Cloudflare Turnstile CAPTCHA</a>.</p>
+# OnCourse.Turnstile
+
+ASP.NET Core middleware for integrating [Cloudflare Turnstile CAPTCHA](https://developers.cloudflare.com/turnstile/).
 
 [![NuGet](https://img.shields.io/nuget/v/OnCourse.Turnstile.svg)](https://www.nuget.org/packages/OnCourse.Turnstile/)
-[![License](https://img.shields.io/github/license/aspnet-contrib/OnCourse.Turnstile.svg)](https://github.com/oncoursesystems/OnCourse.Turnstile/blob/main/LICENSE)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-</div>
+![Cloudflare Turnstile](https://raw.githubusercontent.com/oncoursesystems/OnCourse.Turnstile/main/preview.gif)
 
 ## Requirements
 
@@ -118,16 +117,17 @@ You can find two example projects in the `Samples` folder of this repository. Yo
 
 The following sitekeys and secret keys are available for testing ([docs](https://developers.cloudflare.com/turnstile/troubleshooting/testing/)).  These dummy sitekeys will produce the `XXXX.DUMMY.TOKEN.XXXX` response token. The dummy secret keys will only accept that response token and production secret keys will not accept it.
 
-| Sitekey | Description | 	| Visibility
-|---------|-------------|-----------
-| 1x00000000000000000000AA | Always passes | visible
-| 2x00000000000000000000AB | Always blocks | visible
-| 1x00000000000000000000BB | Always passes | invisible
-| 2x00000000000000000000BB | Always blocks | invisible
-| 3x00000000000000000000FF | Forces an interactive challenge | visible
+| Sitekey | Description | Visibility |
+|---------|-------------|----------- |
+| `1x00000000000000000000AA` | Always passes | visible |
+| `2x00000000000000000000AB` | Always blocks | visible |
+| `1x00000000000000000000BB` | Always passes | invisible |
+| `2x00000000000000000000BB` | Always blocks | invisible |
+| `3x00000000000000000000FF` | Forces an interactive challenge | visible |
 
-| Secret key | Description
-| 1x0000000000000000000000000000000AA | Always passes
-| 2x0000000000000000000000000000000AA | Always fails
-| 3x0000000000000000000000000000000AA | Yields a "token already spent" error
+| Secret key | Description |
+| ----------- | ----------- |
+| `1x0000000000000000000000000000000AA` | Always passes |
+| `2x0000000000000000000000000000000AA` | Always fails |
+| `3x0000000000000000000000000000000AA` | Yields a "token already spent" error |
 
