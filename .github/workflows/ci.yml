@@ -10,8 +10,7 @@ on:
   workflow_dispatch:
 
 env:
-  DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 1 # Suppresses the "Welcome to .NET!" message
-  CI: 1 # Disables Husky and prevents npm install running during the dotnet build
+  DOTNET_NOLOGO: 1
 
 jobs:
   build:
